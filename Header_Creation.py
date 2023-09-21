@@ -1,24 +1,22 @@
 import requests
 from Authorization import cookies
-import http.cookies
-
 
 def create_headers(header):
     url = f"http://localhost:9000/api/apibase/Header/{header}"
     payload = {}
-
-    # Extracting the cookie
-    cookie = http.cookies.SimpleCookie(cookies)
-    people_ess = cookie.get('PeopleEssUser').value
-    xsrf = cookie.get('XSRF-TOKEN').value
-
     headers = {
-                'Cookie': f'PeopleEssUser={people_ess}; XSRF-TOKEN={xsrf}'
-              }
+        'Cookie': cookies
+    }
 
     response = requests.request("POST", url, headers=headers, data=payload)
 
-    print(response.text)
+    data = response.json()
+
+    api_object_id = data['data']['apiObjectID']
+    print(api_object_id)
+    return api_object_id
 
 
-create_headers(header='EMPLOYEE')
+header_ = 'REPORTSTOEMP'
+object_id = create_headers(header=header_)
+

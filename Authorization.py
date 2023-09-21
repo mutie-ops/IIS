@@ -9,8 +9,12 @@ def generate_token():
         'Content-Type': 'application/x-www-form-urlencoded',
     }
 
-    response = requests.request("POST", url, headers=headers, data=payload)
-    return response.headers['set-Cookie']
+    try:
+        response = requests.request("POST", url, headers=headers, data=payload)
+        # print(response.text)
+        return response.headers['set-Cookie']
+    except Exception as e:
+        print(e)
 
 
 cookies = generate_token()
