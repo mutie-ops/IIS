@@ -3,6 +3,8 @@ import requests
 import json
 
 print(cookies)
+
+
 def create_employee():
     url = f'http://localhost:9000/api/apibase/employee'
 
@@ -72,7 +74,7 @@ def create_employee():
         "GenericFields": []
     })
 
-    response = requests.request('POST',url=url, headers=header,data=payload)
+    response = requests.request('POST', url=url, headers=header, data=payload)
     print(response.text)
 
 
