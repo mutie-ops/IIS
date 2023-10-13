@@ -1,0 +1,158 @@
+{
+    "CompanyCode": "SOUTHAFRICA",
+    "CompanyRuleCode": "RSA",
+    "EmployeeCode": "EMPAPI_B142",
+    "EntityCode": "API_1A",
+    "GenEntityTypeCode": "INDV",
+    "GenEntitySubTypeCode": "EMPL",
+    "TaxNo": "1231239846",
+    "TaxRegistrationDate": "2017/09/15",
+    "TitleTypeCode": "MS",
+    "Initials": "F",
+    "FirstName": "Full",
+    "LastName": "Employee",
+    "SecondName": "",
+    "OtherNames": "Full",
+    "KnownAsName": "Full",
+    "MaritalStatusTypeCode": "MRD",
+    "BirthDate": "1999/01/01",
+    "BirthCertificateNumber": "",
+    "CityOfBirth": "Pretoria",
+    "CountryOfBirth": "ZAF",
+    "Disabled": "FALSE",
+    "EthnicTypeCode": "EU",
+    "LanguageTypeCode": "ENG",
+    "NationalityCountryCode": "ZAF",
+    "RacialGroup": "W",
+    "IDNumber": "3409294800081",
+    "PassportNo": "123456789101234",
+    "PassportCountryCode": "ZAF",
+    "LeavePolicyCode": "SA_START",
+    "LeaveStartDate": "2019/03/01",
+    "RemunerationEarnDefCode": "SALARY",
+    "PaymentRunDefCode": "SA_CASH",
+    "AnnualSalary": "25000.0000",
+    "JobGradeCode": "JOBGRADE_TIER1",
+    "JobTitleTypeCode": "TEAMLEAD",
+    "PrimaryPosition": "",
+    "TaxStatusCode": "ST",
+    "TaxCalculation": "A",
+    "TaxStartDate": "2021/03/05",
+    "NatureOfContractCode": "PERM",
+    "ProbationPeriodEndDate": "2021/05/01",
+    "ReligionCode": "",
+    "BloodGroup": "O+",
+    "DateEngaged": "2021/03/01",
+    "DateJoinedGroup": "2021/03/01",
+    "TerminationDate": "2021/12/31",
+    "TerminationReasonCode": "EC",
+    "FinalCalcNow": "2",
+    "UIFStatusCode": "UIF",
+    "UIFStartDate": "2021/03/01",
+    "MedicalStartDate": "2019/03/01",
+    "OverrideAnnualBonusCalcRecurrence": "FALSE",
+    "CalendarMonth": "12",
+    "LegallyRetiredforTaxPurpose": "TRUE",
+    "ForeignIncome": "TRUE",
+    "HomeNumber": "0129911739",
+    "WorkNumber": "0124207000",
+    "FaxNumber": "0863334444",
+    "CellNumber": "0811112233",
+    "EmailAddress": "john.doe@WebTest.com",
+    "Addresses": [
+        {
+            "UseWork": "True",
+            "UsePhysical": "True",
+            "UsePostal": "False",
+            "CorrespondenceAddress": "False",
+            "UnitPostalNumber": "Unt 1",
+            "Complex": "Cmplx name",
+            "LevelFloor": "12",
+            "StreetNumber": "Str123",
+            "StreetFarmName": "Str Name",
+            "SuburbDistrict": "Suburb",
+            "CityTown": "City",
+            "Province": "Provinceeee",
+            "PostalCode": "0011",
+            "PostalAgency": "pst agency",
+            "PostOffice": "pst office",
+            "PostalAddressNumber": "pst adrs",
+            "CareOf": "False",
+            "CountryCode": "ZAF"
+        },
+        {
+            "UseWork": "False",
+            "UsePhysical": "False",
+            "UsePostal": "True",
+            "AddressServiceTypeCode": "PO",
+            "CorrespondenceAddress": "True",
+            "SuburbDistrict": "pstal",
+            "CityTown": "postal line",
+            "Province": "pst prov",
+            "PostalCode": "2211",
+            "PostalAgency": "postal agency",
+            "PostOffice": "post office",
+            "PostalAddressNumber": "2nd addr",
+            "OtherServiceType": "othr srvc tp111",
+            "DistrictCode": "DST9",
+            "CareOf": "False",
+            "CountryCode": "ZAF"
+        }
+    ],
+    "BankAccounts": [
+        {
+            "AccountName": "Mrs E FULL",
+            "AccountNo": "6249994975",
+            "AccountTypeCode": "CA",
+            "BankCode": "ABSA",
+            "BankBranchCode": "632005",
+            "DefaultInd": true
+        }
+    ],
+    "DriversLicenses": [
+        {
+            "DriversLicCountryCode": "ZAF",
+            "IssueDate": "2016-10-10",
+            "ExpiryDate": "2026-02-20",
+            "LicenseNumber": "API_EDIT",
+            "LicenseCategoriesTypeCode": "LIC_CAT1",
+            "LicenseRestrictionsTypeCode": ""
+        },
+        {
+            "DriversLicCountryCode": "ZAF",
+            "IssueDate": "2021-10-10",
+            "ExpiryDate": "2022-02-20",
+            "LicenseNumber": "API_NEW",
+            "LicenseCategoriesTypeCode": "",
+            "LicenseRestrictionsTypeCode": "LIC_REST_1"
+        }
+    ],
+    "Contacts": [
+        {
+            "ContactTypeCode": "CELL",
+            "ContactDetail": "0821234567"
+        },
+        {
+            "ContactTypeCode": "HOME",
+            "ContactDetail": "0124643789"
+        },
+        {
+            "ContactTypeCode": "MAIL",
+            "ContactDetail": "NewAdditional@mWebTest.com"
+        },
+        {
+            "ContactTypeCode": "FAX",
+            "ContactDetail": "0123654859"
+        },
+        {
+            "ContactTypeCode": "HOME",
+            "ContactDetail": "0124589632"
+        }
+    ],
+    "Hierarchies": [
+        {
+            "HierarchyHeaderCode": "DEPARTMENT",
+            "HierarchyCode": "IT"
+        }
+    ]
+}

@@ -3,8 +3,7 @@ import requests
 
 def generate_token():
     url = "http://localhost:9000/token"
-
-    payload = 'grant_type=password&username=Admin&password=a&scope=apiKey%3D0c4a0f04-6a8f-4c07-8767-2c8cf6eafa87'
+    payload = 'grant_type=password&username=Admin&password=a&scope=apiKey%3D9785869f-8d94-465d-97fa-62c7e330643e'
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
     }
