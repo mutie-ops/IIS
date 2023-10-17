@@ -10,7 +10,8 @@ def header_extraction(data):
     return df
 
 
-data_frame = header_extraction('C:\\Users\\Benjamin Mutie\\Desktop\\IIS\data\\test2.xlsx')
+data_frame = header_extraction('C:\\Users\\HP\\PycharmProjects\\IIS\data\\test2.xlsx')
+
 
 def name_combination():
     first_name = data_frame['First Name']
@@ -29,7 +30,9 @@ def name_hours_extraction():
         total_hours = (data_frame[data_frame['FULL NAMES'] == full_name]['Work done in hours'] > 0).sum()
         individual_hours.append(total_hours)
 
-    result_df = pd.DataFrame({'FULL NAMES': unique_individuals, 'Days Worked': individual_hours})
+    result_df = pd.DataFrame({'FULL NAMES': unique_individuals, 'Days Worked': individual_hours,
+                              'Overtime 1.5': 0, 'Overtime 2.0': 0})
+
     return result_df
 
 
@@ -58,9 +61,8 @@ def overtime_extraction():
         row = [day_type_totals.get(dt, 0) for dt in unique_day_types]
         rows_to_append.append(row)
 
-    # create new columns OT 1.5 AND OT 2.0
-    overtime_1_5=
-    result_df = pd.concat([results, pd.DataFrame(rows_to_append, columns=results.columns)], ignore_index=True)
+    result_df = pd.concat([results, pd.DataFrame(rows_to_append, columns=results.columns)],
+                          ignore_index=True)
 
     return result_df
 
@@ -69,7 +71,9 @@ def save(savefile):
     results1 = name_hours_extraction()
     results2 = overtime_extraction()
 
+    # data_frame['Workday O'] = data_frame['Overtime1.5']
     # Concatenate the DataFrames along the columns (axis=1)
+
     combined = pd.concat([results1, results2], axis=1)
 
     combined.to_excel(savefile, index=False)
@@ -77,4 +81,16 @@ def save(savefile):
 
 savefile = 'output_excel_file3.xlsx'
 save(savefile)
-print('Data saved')
+print('Data saved first time')
+
+
+def column_correction(file, save_file):
+    df = pd.read_excel(file)
+    print(df.columns)
+    df['Overtime 1.5'] = df['Workday  O']
+    df['Overtime 2.0'] = df['Holiday OT'] + df['Restday OT']
+    df.to_excel(save_file, index=False)
+    print('saved second time')
+
+
+column_correction(file=savefile, save_file=savefile)
