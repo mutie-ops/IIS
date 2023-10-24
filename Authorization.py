@@ -10,8 +10,8 @@ def generate_token():
 
     try:
         response = requests.request("POST", url, headers=headers, data=payload)
-        print(response.text)
-        print(response.headers)
+        # print(response.text)
+        # print(response.headers)
         return response.headers['set-Cookie']
     except Exception as e:
         print(e)

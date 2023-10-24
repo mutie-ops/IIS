@@ -14,7 +14,7 @@ def get_unit_batch_template_details():
     payload = {}
 
     response = requests.request('GET', url=url, headers=headers, data=payload)
-    print(response.text)
+    # print(response.text)
 
     for template in response.json()['data']:
         temp_id = template["unitLineBatchHeaderTemplateID"]
@@ -78,9 +78,21 @@ def batch_normal_line_type():
     })
 
     response = requests.request('POST', url=url, headers=header, data=payload)
-    print(response.text)
+    # print(response.text)
     success = response.json()['success']
     return success
 
+def send_email():
+    from Email_Services import create_message
+    success_response = batch_normal_line_type()
+    message = ('UNIT LINE BATCH UPDATE IS SUCCESSFUL,'
+               'Awaiting verification and processing')
+    to = 'mutie.mutisya@gravitysolutions.net'
+    subject = 'SUCCESSFUL BATCH UPDATE'
+    if success_response:
+        create_message(message=message, to=to, subject=subject)
+    else:
+        create_message(message='UNIT LINE BATCH UPDATE FAILED', to=to, subject='FAILED BATCH UPDATE')
 
-batch_normal_line_type()
+
+send_email()
