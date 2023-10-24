@@ -25,13 +25,27 @@ name_combination()
 
 def name_hours_extraction():
     unique_individuals = data_frame['FULL NAMES'].unique()
+    employee_id = data_frame['Employee ID'].unique()
+
+    data_frame['Date'] = pd.to_datetime(data_frame['Date'], format='%d-%m-%Y', errors='coerce')
+    data_frame['Date'] = data_frame['Date'].dt.date
+
+    date_worked = data_frame.groupby('Employee ID')['Date'].min().reset_index()
+    date_worked.set_index('Employee ID', inplace=True)
+    #  group by employee id a get minimum date worked
+
     individual_hours = []
     for full_name in unique_individuals:
         total_hours = (data_frame[data_frame['FULL NAMES'] == full_name]['Work done in hours'] > 0).sum()
         individual_hours.append(total_hours)
 
-    result_df = pd.DataFrame({'FULL NAMES': unique_individuals, 'Days Worked': individual_hours,
-                              'Overtime 1.5': 0, 'Overtime 2.0': 0})
+    result_df = pd.DataFrame(
+        {'FULL NAMES': unique_individuals,
+         'Employee ID': employee_id,
+         'Date Worked': date_worked.loc[employee_id]['Date'].values,
+         'Days Worked': individual_hours,
+         'Overtime 1.5': 0,
+         'Overtime 2.0': 0})
 
     return result_df
 
@@ -40,57 +54,40 @@ def overtime_extraction():
     unique_day_types = data_frame['Day Type'].unique()
     results = pd.DataFrame(columns=list(unique_day_types))
 
-    individual_totals = {}  # Dictionary to store individual totals for each day type
+    for full_name in data_frame['FULL NAMES'].unique():
+        individual_totals = []
 
-    for index, row in data_frame.iterrows():
-        full_name = row['FULL NAMES']
-        day_type = row['Day Type']
-        overtime = row['Overtime']
+        for day_type in unique_day_types:
+            # Filter the DataFrame for the specific full name and day type
+            filtered_df = data_frame[(data_frame['FULL NAMES'] == full_name) & (data_frame['Day Type'] == day_type)]
+            total_overtime = filtered_df['Overtime'].sum()
 
-        if full_name not in individual_totals:
-            individual_totals[full_name] = {day_type: overtime}
-        else:
-            if day_type not in individual_totals[full_name]:
-                individual_totals[full_name][day_type] = overtime
-            else:
-                individual_totals[full_name][day_type] += overtime
+            individual_totals.append(total_overtime)
 
-    rows_to_append = []
+        results.loc[len(results)] = individual_totals
 
-    for day_type_totals in individual_totals.values():
-        row = [day_type_totals.get(dt, 0) for dt in unique_day_types]
-        rows_to_append.append(row)
-
-    result_df = pd.concat([results, pd.DataFrame(rows_to_append, columns=results.columns)],
-                          ignore_index=True)
-
-    return result_df
+    return results
 
 
 def save(savefile):
     results1 = name_hours_extraction()
     results2 = overtime_extraction()
-
-    # data_frame['Workday O'] = data_frame['Overtime1.5']
-    # Concatenate the DataFrames along the columns (axis=1)
-
     combined = pd.concat([results1, results2], axis=1)
-
     combined.to_excel(savefile, index=False)
 
 
-savefile = 'output_excel_file3.xlsx'
+savefile = 'output_excel_file4.xlsx'
 save(savefile)
 print('Data saved first time')
 
 
-def column_correction(file, save_file):
+def final_excel_sheet(file, save_file):
     df = pd.read_excel(file)
-    print(df.columns)
+    # print(df.columns)
     df['Overtime 1.5'] = df['Workday  O']
     df['Overtime 2.0'] = df['Holiday OT'] + df['Restday OT']
     df.to_excel(save_file, index=False)
     print('saved second time')
 
 
-column_correction(file=savefile, save_file=savefile)
+final_excel_sheet(file=savefile, save_file=savefile)

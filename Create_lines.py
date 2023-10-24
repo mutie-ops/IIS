@@ -7,8 +7,7 @@ url = "http://localhost:9000/api/apibase/Employee/Get/2008"
 
 payload = {}
 headers = {
-          'Cookie': cookies
-          }
+          'Cookie': cookies}
 
 response = requests.request("POST", url, headers=headers, data=payload)
 
